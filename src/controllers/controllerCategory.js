@@ -6,6 +6,12 @@ const categoryConfig = async (req, res) => {
   return res.status(201).json(message);
 };
 
+const getAll = async (req, res) => {
+    const result = await serviceCategory.getAll();
+    return res.status(200).json(result);
+  };
+
   module.exports = {
     categoryConfig,
+    getAll,
   };
