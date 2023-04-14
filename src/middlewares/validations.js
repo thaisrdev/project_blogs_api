@@ -48,8 +48,15 @@ const userValidation = (req, res, next) => {
     return next();
 };
 
+const categoryValidation = (req, res, next) => {
+    const { body: { name } } = req;
+    if (!name) res.status(400).json({ message: '"name" is required' });
+    return next();
+};
+
 module.exports = {
     loginValidation,
     userValidation,
     tokenValidation,
+    categoryValidation,
 };
