@@ -10,7 +10,13 @@ const userConfig = async (displayName, email, password, image) => {
     await User.create({ displayName, email, password });
     return { type: null };
 };
+
+const getUsers = async () => {
+  const result = await User.findAll({ attributes: ['id', 'displayName', 'email', 'image'] });
+  return result;
+};
     
 module.exports = { 
     userConfig,
+    getUsers,
 };
