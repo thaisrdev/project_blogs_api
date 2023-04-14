@@ -15,10 +15,17 @@ const User = (sequelize, DataTypes) => {
      tableName: 'users',
      underscored: true,
      timestamps: false, 
+    });
+    tableUser.associate = (models) => {
+      tableUser.hasMany(models.BlogPost, {
+        as: 'blogPost',
+        foreignKey: 'user_id',
+   
+      })
     }
- 
-    )
   return tableUser;
  };
  
  module.exports = User;
+
+ 
