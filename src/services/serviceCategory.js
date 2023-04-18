@@ -6,11 +6,11 @@ return { type: null, message: result };
 };
 
 const getAll = async () => {
-    const result = await Category.findAll();
-    return result;
-  };
+  const result = await Category.findAll();
+  return result;
+};
 
-module.exports = { 
-    categoryConfig,
-    getAll,
- };
+module.exports = {
+  categoryConfig,
+  getAll,
+};

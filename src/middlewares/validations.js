@@ -21,7 +21,7 @@ const tokenValidation = async (req, res, next) => {
     try {
         const user = jwt.verify(authorization, JWT_SECRET);
         req.user = user;
-        return next();
+        next();
     } catch (error) {
         return res.status(401).json({ message: 'Expired or invalid token' });
     }
@@ -50,7 +50,7 @@ const userValidation = (req, res, next) => {
 
 const categoryValidation = (req, res, next) => {
     const { body: { name } } = req;
-    if (!name) res.status(400).json({ message: '"name" is required' });
+    if (!name) return res.status(400).json({ message: '"name" is required' });
     return next();
 };
 
