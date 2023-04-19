@@ -19,10 +19,10 @@ const tokenValidation = async (req, res, next) => {
         return res.status(401).json({ message: 'Token not found' });
     }
     try {
-        const user = jwt.verify(authorization, JWT_SECRET);
-        req.user = user;
-        next();
-    } catch (error) {
+        const decoded = jwt.verify(authorization, JWT_SECRET);
+        req.user = decoded;
+        return next();
+    } catch (err) {
         return res.status(401).json({ message: 'Expired or invalid token' });
     }
 };
@@ -54,9 +54,18 @@ const categoryValidation = (req, res, next) => {
     return next();
 };
 
+// const postValidation = (req, res, next) => {
+//     const { body: { title, content, categoryIds } } = req;  
+//     if (!title || !content || !categoryIds) {
+//       return res.status(400).json({ message: 'Some required fields are missing' });
+//     }  
+//     next();
+//   };
+
 module.exports = {
     loginValidation,
     userValidation,
     tokenValidation,
     categoryValidation,
+    // postValidation,
 };

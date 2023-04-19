@@ -3,15 +3,22 @@ const Blog_posts = (sequelize, DataTypes) => {
      id: {
        type:  DataTypes.INTEGER,
        primaryKey: true, 
-       autoIncrement:true,
+       autoIncrement: true,
      }, 
      title: DataTypes.STRING,
      content: DataTypes.STRING,
      userId: {
-        type: DataTypes.INTEGER,
-        foreingkey: true },
-        published: DataTypes.DATE,
-        updated: DataTypes.DATE,
+      type: DataTypes.INTEGER,
+      foreingkey: true,
+     },
+     published: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+     },
+     updated: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+     }
     },
 
     {
@@ -22,7 +29,7 @@ const Blog_posts = (sequelize, DataTypes) => {
     BlogPost.associate = (models) => {
         BlogPost.belongsTo(models.User, {
             as: 'user',
-            foreingkey: 'userId',
+            foreingkey: 'user_id',
         });
     }
   return BlogPost;
